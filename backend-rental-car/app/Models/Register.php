@@ -7,4 +7,10 @@ use Illuminate\Database\Eloquent\Model;
 class Register extends Model
 {
     protected $guarded = ['id'];
+
+    // relasi ke rent
+    public function rents()
+    {
+        return $this->hasMany(Rent::class);
+    }
 }

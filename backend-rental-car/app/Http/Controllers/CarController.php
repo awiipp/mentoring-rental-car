@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Car;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
 class CarController extends Controller
@@ -126,6 +127,9 @@ class CarController extends Controller
             // kalo ada image baru
             $url = $request->file('image')->store('car', 'public');
 
+            // ngehapus image lama yg udh disimpen
+            Storage::disk('public')->delete($car->image);
+
             $validated['image'] = $url;
         } else {
             // kalo ga ada image baru, pakai image lama
@@ -155,6 +159,9 @@ class CarController extends Controller
                 'message' => 'car not found'
             ], 404);
         }
+
+        // ngehapus image lama yg udh disimpen
+        Storage::disk('public')->delete($car->image);
 
         // delete car
         $car->delete();
