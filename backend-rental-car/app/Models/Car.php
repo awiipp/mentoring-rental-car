@@ -13,4 +13,16 @@ class Car extends Model
     {
         return $this->hasMany(Rent::class);
     }
+
+    // relasi ke penalties
+    public function penalties()
+    {
+        return $this->hasMany(Penalties::class);
+    }
+
+    // relasi ke car return
+    public function carReturns()
+    {
+        return $this->hasMany(CarReturn::class);
+    }
 }

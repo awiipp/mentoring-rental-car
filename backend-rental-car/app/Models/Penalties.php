@@ -4,14 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Register extends Model
+class Penalties extends Model
 {
     protected $guarded = ['id'];
 
-    // relasi ke rent
-    public function rents()
+    // relasi ke car
+    public function car()
     {
-        return $this->hasMany(Rent::class);
+        return $this->belongsTo(Car::class, 'id_car', 'id');
     }
 
     // relasi ke car return
